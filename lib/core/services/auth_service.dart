@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   final firebaseAuth = FirebaseAuth.instance;
+  final firebaseFireStore = FirebaseFirestore.instance;
 
   Future<String?> GirisYap(String email, String sifre) async {
     String? res;
@@ -20,11 +22,25 @@ class AuthService {
   Future<String?> Register(
     String email,
     String password,
+    String fullname,
+    String cinsiyet,
   ) async {
     String? res;
     try {
       final result = await firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+      try {
+        final resultData = await firebaseFireStore
+            .collection("Kullanıcı")
+            .doc(result.user!.uid)
+            .set({
+          "email": email,
+          "fullname": fullname,
+          "Cinsiyet": cinsiyet,
+        });
+      } catch (e) {
+        print("$e");
+      }
       res = "basarili";
     } on FirebaseAuthException catch (e) {
       print(e.toString());

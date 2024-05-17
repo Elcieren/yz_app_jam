@@ -41,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
                         height: height * 0.39,
                         decoration: const BoxDecoration(
                           image: DecorationImage(
-                              image: AssetImage("assets/background1.png"),
+                              image: AssetImage("assets/den2.jpg"),
                               fit: BoxFit.cover),
                         ),
                       ),
@@ -51,7 +51,7 @@ class _LoginViewState extends State<LoginView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              "Hoşgeldin \nDoğayı Tanımaya \nHazır mısın",
+                              "Hoşgeldin \nDoğayı Tanımaya \nHazır mısın?",
                               style: TextStyle(
                                   fontSize: 30, fontWeight: FontWeight.bold),
                             ),

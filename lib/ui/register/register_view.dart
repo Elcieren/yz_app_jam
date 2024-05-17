@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'package:yz_app_jam/core/services/auth_service.dart';
 import 'package:yz_app_jam/ui/login/login_view.dart';
@@ -15,6 +17,9 @@ class RegisterView extends StatefulWidget {
 class _RegisterViewState extends State<RegisterView> {
   late String email;
   late String sifre;
+  late String fullname;
+  String? cinsiyet;
+  List<String> cinsiyetler = ['Erkek', 'Kadın'];
   final formKey = GlobalKey<FormState>();
   final authService = AuthService();
   final firebaseAuth = FirebaseAuth.instance;
@@ -25,7 +30,7 @@ class _RegisterViewState extends State<RegisterView> {
         viewModelBuilder: () => RegisterViewModel(),
         onViewModelReady: (viewModel) => viewModel.init(),
         builder: (context, viewModel, child) => Scaffold(
-              backgroundColor: const Color(0xfff5f5f5),
+              backgroundColor: Colors.white,
               body: SingleChildScrollView(
                 child: Center(
                   child: Form(
@@ -63,15 +68,22 @@ class _RegisterViewState extends State<RegisterView> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: Colors.grey.withOpacity(0.2)),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: FullName()),
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              Container(
+                                  width: 400,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.grey.withOpacity(0.2)),
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   child: emailTextField()),
                               const SizedBox(
                                 height: 20,
                               ),
-                              //AdSoyadTextField(),
-
-                              // userNameTextField(),
-
                               Container(
                                   width: 400,
                                   decoration: BoxDecoration(
@@ -79,6 +91,10 @@ class _RegisterViewState extends State<RegisterView> {
                                       color: Colors.grey.withOpacity(0.2)),
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   child: sifreTextField()),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Cinsiyet(),
                               const SizedBox(
                                 height: 20,
                               ),
@@ -114,18 +130,39 @@ class _RegisterViewState extends State<RegisterView> {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       try {
-        final result = await authService.Register(email, sifre);
-        if (result == "basarili") {
-          formKey.currentState!.reset();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content:
-                  Text("Hesap Oluşturuldu Giriş Sayafaya yönlendiriliyorsunuz"),
-            ),
+        if (cinsiyet == null) {
+          showCupertinoDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return CupertinoAlertDialog(
+                title: Text("Uyarı"),
+                content: Text("Lütfen cinsiyetinizi giriniz."),
+                actions: <Widget>[
+                  CupertinoDialogAction(
+                    child: Text("Tamam"),
+                    onPressed: () {
+                      Navigator.pop(context); // İletişim kutusunu kapat
+                    },
+                  ),
+                ],
+              );
+            },
           );
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LoginView()),
-          );
+        } else {
+          final result =
+              await authService.Register(email, sifre, fullname, cinsiyet!);
+          if (result == "basarili") {
+            formKey.currentState!.reset();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text(
+                    "Hesap Oluşturuldu Giriş Sayafaya yönlendiriliyorsunuz"),
+              ),
+            );
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => LoginView()),
+            );
+          }
         }
       } catch (e) {
         print(e.toString());
@@ -183,6 +220,69 @@ class _RegisterViewState extends State<RegisterView> {
         child: const Text(
           "Giriş Sayfasına Geri Dön",
           style: TextStyle(color: Color(0xff20AE67)),
+        ),
+      ),
+    );
+  }
+
+  TextFormField FullName() {
+    return TextFormField(
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      validator: (value) {
+        if (value!.isEmpty) {
+          return "Adınızı Soyadınızı Eksiksiz Doldurunuz";
+        }
+      },
+      onSaved: (value) {
+        fullname = value!;
+      },
+      style: TextStyle(color: Colors.black),
+      decoration: customInputDecaration("Ad Soyad"),
+    );
+  }
+
+  Container Cinsiyet() {
+    return Container(
+      width: 400,
+      height: 50,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        color: Colors.grey.withOpacity(0.2),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
+      child: Container(
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: DropdownButton<String>(
+          value: cinsiyet,
+          onChanged: (String? newValue) {
+            setState(() {
+              cinsiyet = newValue!;
+            });
+          },
+          style: TextStyle(color: Colors.black),
+          underline: SizedBox(),
+          hint: const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'Cinsiyetiniz',
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+          ),
+          iconSize: 32,
+          isExpanded: true,
+          items: cinsiyetler.map<DropdownMenuItem<String>>((String value) {
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                child: Text(value),
+              ),
+            );
+          }).toList(),
         ),
       ),
     );
