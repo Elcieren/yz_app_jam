@@ -1,0 +1,48 @@
+name: yz_app_jam
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.2 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+
+  cupertino_icons: ^1.0.6
+  #State_Managment
+  stacked: ^3.4.2
+  stacked_services: ^1.5.0
+  get_it: ^7.7.0
+  #Firebase
+  firebase_core: ^2.28.0
+  firebase_auth: ^4.17.9
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+ 
+  flutter_lints: ^3.0.0
+  build_runner:
+  stacked_generator: ^1.6.0
+
+
+flutter:
+
+  
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+  #   - images/a_dot_ham.jpeg
+
+  
