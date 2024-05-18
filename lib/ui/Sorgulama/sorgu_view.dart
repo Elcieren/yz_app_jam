@@ -19,41 +19,38 @@ class SorguView extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
-                    child: GestureDetector(
-                      onTap: () {
-                        print("birinci nesne tıklandi");
-                      },
-                      child: Container(
-                        height: 100,
-                        width: 340,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 164, 244, 204),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Image.asset('assets/flower.png'),
+                    child: Container(
+                      height: 100,
+                      width: 340,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 164, 244, 204),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Image.asset('assets/flower.png'),
+                          ),
+                          SizedBox(height: 10),
+                          Expanded(
+                            child: Text(
+                              'Çiçek türünü öğrenmek ister misin? Hemen fotoğrafını çek ve yükle, sana türünü söyleyelim.',
+                              style: TextStyle(color: Colors.black),
                             ),
-                            SizedBox(height: 10),
-                            Expanded(
-                              child: Text(
-                                'Çiçek türünü öğrenmek ister misin? Hemen fotoğrafını çek ve yükle, sana türünü söyleyelim.',
-                                style: TextStyle(color: Colors.black),
-                              ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              print("birinci nesne");
+                            },
+                            icon: Icon(
+                              Icons.arrow_right,
+                              size: 50,
+                              color: Colors.black,
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.arrow_right,
-                                size: 50,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -62,41 +59,36 @@ class SorguView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
-                    child: GestureDetector(
-                      onTap: () {
-                        print("birinci nesne tıklandi");
-                      },
-                      child: Container(
-                        height: 100,
-                        width: 340,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 164, 244, 204),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Image.asset('assets/manatar3.png'),
+                    child: Container(
+                      height: 100,
+                      width: 340,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 164, 244, 204),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Image.asset('assets/manatar3.png'),
+                          ),
+                          SizedBox(height: 10),
+                          Expanded(
+                            child: Text(
+                              'Merak ettiğin mantar türünü öğrenmek için bir adım at! Fotoğrafını çek ve biz de o gizemli dünyadan bilgi verelim',
+                              style: TextStyle(color: Colors.black),
                             ),
-                            SizedBox(height: 10),
-                            Expanded(
-                              child: Text(
-                                'Merak ettiğin mantar türünü öğrenmek için bir adım at! Fotoğrafını çek ve biz de o gizemli dünyadan bilgi verelim',
-                                style: TextStyle(color: Colors.black),
-                              ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.arrow_right,
+                              size: 50,
+                              color: Colors.black,
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.arrow_right,
-                                size: 50,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -105,41 +97,36 @@ class SorguView extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 30),
-                    child: GestureDetector(
-                      onTap: () {
-                        print("birinci nesne tıklandi");
-                      },
-                      child: Container(
-                        height: 100,
-                        width: 340,
-                        decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 164, 244, 204),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Image.asset('assets/bitki.png'),
+                    child: Container(
+                      height: 100,
+                      width: 340,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 164, 244, 204),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Image.asset('assets/bitki.png'),
+                          ),
+                          SizedBox(height: 10),
+                          Expanded(
+                            child: Text(
+                              'Bitkiler, doğanın sessiz kahramanlarıdır, gizemlerini keşfetmeye ne dersin?',
+                              style: TextStyle(color: Colors.black),
                             ),
-                            SizedBox(height: 10),
-                            Expanded(
-                              child: Text(
-                                'Bitkiler, doğanın sessiz kahramanlarıdır, gizemlerini keşfetmeye ne dersin?',
-                                style: TextStyle(color: Colors.black),
-                              ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.arrow_right,
+                              size: 50,
+                              color: Colors.black,
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.arrow_right,
-                                size: 50,
-                                color: Colors.black,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

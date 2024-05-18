@@ -143,7 +143,7 @@ class _PostViewState extends State<PostView> {
       },
       style: TextStyle(color: Colors.black),
       decoration:
-          customInputDecaration("Yardımcı olabileceğimiz bir şey var mı?"),
+          customInputDecaration("Doğada Neler Keşfettin Hadi Bizimle Paylaş ?"),
     );
   }
 
