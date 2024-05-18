@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:yz_app_jam/core/services/auth_service.dart';
+import 'package:yz_app_jam/ui/bag/bag_view.dart';
 import 'package:yz_app_jam/ui/login/login_view.dart';
 import 'package:yz_app_jam/ui/profil/profil_view_model.dart';
 
@@ -20,6 +21,7 @@ class _ProfilViewState extends State<ProfilView> {
   final authService = AuthService();
   User? _user;
   Map<String, dynamic>? _userData;
+
   @override
   void initState() {
     super.initState();
@@ -57,6 +59,9 @@ class _ProfilViewState extends State<ProfilView> {
                             itemProfile("Cinsiyet", "${_userData!['Cinsiyet']}",
                                 CupertinoIcons.check_mark),
                             customSizedBox(),
+                            Bag("Çanta", "Eklediğin Türler Burada",
+                                CupertinoIcons.bag_badge_plus, BagSayafsinaGit),
+                            customSizedBox(),
                             itemCikis(
                                 "Çıkış",
                                 "Oturumu Kapat",
@@ -72,6 +77,12 @@ class _ProfilViewState extends State<ProfilView> {
     await authService.signOutAccount();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => LoginView()),
+    );
+  }
+
+  void BagSayafsinaGit() async {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => BagView()),
     );
   }
 
@@ -109,6 +120,35 @@ class _ProfilViewState extends State<ProfilView> {
   }
 
   Widget itemCikis(
+      String title, String subtitle, IconData iconData, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                offset: Offset(0, 5),
+                color: Color(0xff64A6FF).withOpacity(.1),
+                spreadRadius: 5,
+                blurRadius: 10,
+              ),
+            ],
+          ),
+          child: ListTile(
+            title: Center(child: Text(title)),
+            subtitle: Center(child: Text(subtitle)),
+            leading: Icon(iconData),
+            tileColor: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget Bag(
       String title, String subtitle, IconData iconData, VoidCallback onTap) {
     return InkWell(
       onTap: onTap,

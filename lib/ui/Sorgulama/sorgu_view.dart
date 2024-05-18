@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'package:yz_app_jam/ui/Sorgulama/sorgu_view_model.dart';
+import 'package:yz_app_jam/ui/image_labeling/bitki_labeling_view.dart';
 import 'package:yz_app_jam/ui/image_labeling/image_labeling_view.dart';
+import 'package:yz_app_jam/ui/image_labeling/mantar_labeling_view.dart';
 
 class SorguView extends StatelessWidget {
   const SorguView({super.key});
@@ -85,7 +87,12 @@ class SorguView extends StatelessWidget {
                             ),
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => MantarView()),
+                              );
+                            },
                             icon: Icon(
                               Icons.arrow_right,
                               size: 50,
@@ -119,6 +126,87 @@ class SorguView extends StatelessWidget {
                           Expanded(
                             child: Text(
                               'Bitkiler, doğanın sessiz kahramanlarıdır, gizemlerini keşfetmeye ne dersin?',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => BitkiView()),
+                              );
+                            },
+                            icon: Icon(
+                              Icons.arrow_right,
+                              size: 50,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Container(
+                      height: 100,
+                      width: 340,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 164, 244, 204),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Image.asset('assets/com.png'),
+                          ),
+                          SizedBox(height: 10),
+                          Expanded(
+                            child: Text(
+                              'Sanal Bitki türünü seç , toplulukta paylaş ve diğer kullanıcıların da çiçekkelerini keşfet (YAKINDA)',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.arrow_right,
+                              size: 50,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30),
+                    child: Container(
+                      height: 100,
+                      width: 340,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 164, 244, 204),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Image.asset('assets/winner.png'),
+                          ),
+                          SizedBox(height: 10),
+                          Expanded(
+                            child: Text(
+                              'Her Keşifte rozet kazan! Ne kadar çok bitki ve mantar keşfedersen , o kadar çok ödül senii bekliyor (YAKINDA)',
                               style: TextStyle(color: Colors.black),
                             ),
                           ),

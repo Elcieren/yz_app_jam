@@ -75,4 +75,27 @@ class AuthService {
       print('Post oluşturulurken bir hata oluştu: $e');
     }
   }
+
+  Future<void> saveLabelsToFirestore(String labels) async {
+    User? user = firebaseAuth.currentUser;
+    if (user != null) {
+      DocumentReference userDoc =
+          firebaseFireStore.collection('users').doc(user.uid);
+
+      await firebaseFireStore.runTransaction((transaction) async {
+        DocumentSnapshot snapshot = await transaction.get(userDoc);
+        if (!snapshot.exists) {
+          // Belge yoksa oluşturun
+          transaction.set(userDoc, {
+            'labels': [labels],
+          });
+        } else {
+          // Belge varsa güncelleyin
+          List<dynamic> existingLabels = snapshot.get('labels') ?? [];
+          existingLabels.add(labels);
+          transaction.update(userDoc, {'labels': existingLabels});
+        }
+      });
+    }
+  }
 }

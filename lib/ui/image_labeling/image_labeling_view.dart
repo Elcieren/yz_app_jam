@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
 import 'package:yz_app_jam/common/utils.dart';
+import 'package:yz_app_jam/core/services/auth_service.dart';
 import 'package:yz_app_jam/ui/Sorgulama/sorgu_view.dart';
 import 'package:yz_app_jam/ui/image_labeling/detector_view.dart';
 import 'package:yz_app_jam/ui/login/login_view.dart';
@@ -18,6 +19,7 @@ class _ImageLabelingViewState extends State<ImageLabelingView> {
   bool _isBusy = false;
   CustomPaint? _customPaint;
   String? _text;
+  final authService = AuthService();
 
   @override
   void initState() {
@@ -38,7 +40,7 @@ class _ImageLabelingViewState extends State<ImageLabelingView> {
       backgroundColor: Color(0xff20AE67),
       body: Container(
         child: DetectorView(
-          title: "Image Labeler",
+          title: "Çiçek Türleri Keşfet",
           customPaint: _customPaint,
           text: _text,
           onImage: _processImage,
@@ -48,7 +50,7 @@ class _ImageLabelingViewState extends State<ImageLabelingView> {
   }
 
   Future<void> _initializeLabeler() async {
-    final path = 'assets/lite-model_models_mushroom-identification_v1_1.tflite';
+    final path = 'assets/object_labeler_flowers.tflite';
     final modelPath = await getAssetPath(path);
     final options = LocalLabelerOptions(modelPath: modelPath);
     _imageLabeler = ImageLabeler(options: options);
@@ -76,10 +78,20 @@ class _ImageLabelingViewState extends State<ImageLabelingView> {
       }
       _text = text;
       _customPaint = null;
+      await authService.saveLabelsToFirestore(_text!);
+      _showSuccessMessage();
     }
     _isBusy = false;
     if (mounted) {
       setState(() {});
     }
+  }
+
+  void _showSuccessMessage() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('İnanılmaz bir tür başarıyla çantana kaydettik!'),
+      ),
+    );
   }
 }

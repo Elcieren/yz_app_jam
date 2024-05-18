@@ -10,14 +10,18 @@ class SplashView extends StatelessWidget {
         onViewModelReady: (viewModel) => viewModel.init(),
         builder: (context, viewModel, child) => Scaffold(
               backgroundColor: Color(0xff20AE67),
-              body: Center(
-                child: Text(
-                  "DoğaDostum",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold),
-                ),
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset('assets/forest2.png'),
+                  Text(
+                    "DoğaDostum",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ));
   }
