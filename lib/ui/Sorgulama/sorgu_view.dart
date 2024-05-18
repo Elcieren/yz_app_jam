@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
 import 'package:yz_app_jam/ui/Sorgulama/sorgu_view_model.dart';
+import 'package:yz_app_jam/ui/image_labeling/image_labeling_view.dart';
 
 class SorguView extends StatelessWidget {
   const SorguView({super.key});
@@ -42,7 +43,10 @@ class SorguView extends StatelessWidget {
                           ),
                           IconButton(
                             onPressed: () {
-                              print("birinci nesne");
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => ImageLabelingView()),
+                              );
                             },
                             icon: Icon(
                               Icons.arrow_right,
