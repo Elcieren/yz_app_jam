@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:yz_app_jam/ui/Sorgulama/sorgu_view.dart';
+import 'package:yz_app_jam/ui/paylasim/help_view.dart';
+import 'package:yz_app_jam/ui/post/post_view.dart';
 import 'package:yz_app_jam/ui/profil/profil_view.dart';
+import 'package:yz_app_jam/ui/yapazeka/yapay_zeka_view.dart';
 
 class TabItemData {
   String title;
@@ -10,8 +14,8 @@ class TabItemData {
   });
   static Map<TabItem, TabItemData> tabs = {
     TabItem.Plant: TabItemData(
-      title: "çİçek",
-      icon: Icon(Icons.map, color: Color(0xff20AE67)),
+      title: "Ne Bu",
+      icon: Icon(Icons.help, color: Color(0xff20AE67)),
     ),
     TabItem.Help: TabItemData(
       title: "Gönderiler",
@@ -26,11 +30,7 @@ class TabItemData {
     ),
     TabItem.YapayZeka: TabItemData(
       title: "Yapay Zeka",
-      icon: Icon(Icons.lightbulb_outline, color: Color(0xff20AE67)),
-    ),
-    TabItem.EarthquakeCall: TabItemData(
-      title: "Mantar",
-      icon: Icon(Icons.alarm, color: Color(0xff20AE67)),
+      icon: Icon(Icons.question_answer, color: Color(0xff20AE67)),
     ),
     TabItem.Profil: TabItemData(
       title: "Profil",
@@ -47,32 +47,21 @@ BottomNavigationBarItem createNavItem(TabItem tabItem) {
   );
 }
 
-enum TabItem { Profil, Plant, Help, Post, EarthquakeCall, YapayZeka }
+enum TabItem { Profil, Plant, Help, Post, YapayZeka }
 
 Widget getViewForIndex(int index) {
   switch (index) {
     case 0:
-      return Container(
-        child: Center(child: Text("Sayfa1")),
-      );
+      return SorguView();
     case 1:
-      return Container(
-        child: Center(child: Text("Sayfa2")),
-      );
+      return HelpView();
     case 2:
-      return Container(
-        child: Center(child: Text("Sayfa3")),
-      );
+      return PostView();
     case 3:
-      return Container(
-        child: Center(child: Text("Sayfa4")),
-      );
+      return YapayZekaView();
     case 4:
-      return Container(
-        child: Center(child: Text("Sayfa5")),
-      );
-    case 5:
       return ProfilView();
+
     default:
       return Container();
   }

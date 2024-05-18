@@ -59,4 +59,20 @@ class AuthService {
     }
     return res;
   }
+
+  Future<void> createPost(
+      String text, String fullname, String cinsiyet, String email) async {
+    try {
+      await firebaseFireStore.collection('Post').add({
+        'text': text,
+        'username': fullname,
+        'cinsiyet': cinsiyet,
+        'email': email,
+        'timestamp': FieldValue.serverTimestamp(),
+      });
+      print('Post başarıyla oluşturuldu.');
+    } catch (e) {
+      print('Post oluşturulurken bir hata oluştu: $e');
+    }
+  }
 }

@@ -28,7 +28,6 @@ class _MainViewState extends State<MainView> {
                 createNavItem(TabItem.Help),
                 createNavItem(TabItem.Post),
                 createNavItem(TabItem.YapayZeka),
-                createNavItem(TabItem.EarthquakeCall),
                 createNavItem(TabItem.Profil),
               ],
               onTap: (value) {
