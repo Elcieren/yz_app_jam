@@ -24,7 +24,7 @@ Projemizde, doğa ve bitki meraklılarına yönelik bir mobil uygulama olarak ta
 
 ![Ekran Resmi 2024-05-19 02 42 45](https://github.com/Elcieren/yz_app_jam/assets/117864036/69a0f278-14f1-45dd-894b-1d74d179e303)
 
-![Ekran Resmi 2024-05-19 02 42 45](https://github.com/Elcieren/yz_app_jam/assets/117864036/69a0f278-14f1-45dd-894b-1d74d179e303)
+![Ekran Resmi 2024-05-19 02 40 02](https://github.com/Elcieren/yz_app_jam/assets/117864036/0c834eef-2cf5-46ce-aae1-b4a631c88ccd)
 
 
 
