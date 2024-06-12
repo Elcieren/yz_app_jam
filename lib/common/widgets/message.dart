@@ -27,7 +27,7 @@ class Messages extends StatelessWidget {
             padding: const EdgeInsets.all(2.0),
             child: CircleAvatar(
               // Assets klasöründen avatar resmini al
-              backgroundImage: AssetImage("assets/maskot.png"),
+              backgroundImage: AssetImage("assets/maskot2.png"),
               backgroundColor: Colors.blue, // Avatar arka plan rengi
             ),
           ),

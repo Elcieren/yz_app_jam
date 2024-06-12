@@ -14,7 +14,7 @@ class YapayZekaView extends StatefulWidget {
 
 class _YapayZekaViewState extends State<YapayZekaView> {
   TextEditingController _userInput = TextEditingController();
-  static const apikey = 'AIzaSyCuZe82XHexGtmtIbQ_iNvg3674mHPfgCo';
+  static const apikey = '';
   final model = GenerativeModel(model: 'gemini-pro', apiKey: apikey);
   final List<Message> _messages = [];
 
